@@ -95,7 +95,33 @@ describe('GET /todos/:id', () => {
     it('Should return 404 if the ID is not valid', (done) => {
         request(app)
             .get(`/todos/123`)
-            .expect(404)
+            .expect(400)
             .end(done)
     })
 })
+
+// describe('DELETE /todos/:id', () => {
+//     it('Should delete todo doc', (done) => {
+//         request(app)
+//             .delete(`/todos/${todos[1]._id.toHexString()}`)
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.todo.text).toBe('Second test todo')
+//             })
+//             .end(done)
+//     })
+
+//     it('Should return 404 if todo not found', (done) => {
+//         request(app)
+//             .delete(`/todos/${new ObjectID().toHexString()}`)
+//             .expect(404)
+//             .end(done)
+//     })
+
+//     it('Should return 404 if the ID is not valid', (done) => {
+//         request(app)
+//             .delete(`/todos/123`)
+//             .expect(400)
+//             .end(done)
+//     })
+// })
