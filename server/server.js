@@ -37,7 +37,7 @@ app.get('/todos/:id', (req, res) => {
     let id = req.params.id
     if (!ObjectID.isValid(id)) {
         return res.status(404)
-        .send(console.log('ID is not valid'))
+        .send()
     }
 
     Todo.findById(id).then((todo) => {
@@ -49,7 +49,7 @@ app.delete('/todos/:id', (req, res) => {
     let id = req.params.id
     if (!ObjectID.isValid(id)) {
         return res.status(404)
-        .send(console.log('ID is not valid'))
+        .send()
     }
 
     Todo.findByIdAndRemove(id).then((todo) => {
@@ -63,14 +63,14 @@ app.patch('/todos/:id', (req, res) => {
 
     if (!ObjectID.isValid(id)) {
         return res.status(404)
-        .send(console.log('ID is not valid'))
+        .send()
     }
 
     if(_.isBoolean(body.completed) && body.completed) {
         body.completedAt = new Date().getTime()
     } else {
         body.completed = false
-        body.comlpletedAt = null
+        body.completedAt = null
     }
 
     Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
